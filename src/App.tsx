@@ -1,19 +1,25 @@
 import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
+import Like from "./components/Like";
+
 import { useState }  from "react";
+import { TiAdjustBrightness } from "react-icons/ti";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// -----------
-function handleOnSelectItem(item:string) {console.log("You clicked", item)}
-let items = ["AI Man", "What is Velocity", "Femilarity", "RAG System", "What is an Agent?"]
 
-function App() {
+// // -----------
+// function handleOnSelectItem(item:string) {console.log("You clicked", item)}
+// let items = ["AI Man", "What is Velocity", "Femilarity", "RAG System", "What is an Agent?"]
+
+// function App() {
   
-  return <div>
-    < ListGroup title="Chat History" items={items} onSelectItem={handleOnSelectItem} />
-    </div>;
-}
-// ---------
+//   return <div>
+//     < ListGroup title="Chat History" items={items} onSelectItem={handleOnSelectItem} />
+//     <TiAdjustBrightness></TiAdjustBrightness>
+//     </div>;
+// }
+// // ---------
 
 
 
@@ -27,6 +33,7 @@ function App() {
 //       <Button color="danger" onClick={() => setAlertVisiblility(!alertVisible ) }> 
 //       My Button
 //       </Button>
+      
 //     </div>
 //   );
 // }
@@ -44,6 +51,16 @@ function App() {
 //     </Alert>
 //     </div>;
 // } 
+
+
+
+function App(){
+  return (
+    <div>
+      <Like/>
+    </div>
+  )
+}
 
 
 export default App; 

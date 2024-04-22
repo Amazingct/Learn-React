@@ -1,5 +1,19 @@
 import { MouseEvent, useState } from "react";
-import styles from './ListGroup.module.css'
+import styled from 'styled-components';
+
+const List = styled.ul`
+list-style: none;
+padding: 5;
+`
+
+interface ListItemProps{
+    active: boolean;
+}
+
+const ListItem = styled.li<ListItemProps>`
+padding: 5px 0;
+background: ${props => props.active ? 'blue':'none'}
+`
 
 interface ListGroupProps {
     title: string;
@@ -7,48 +21,36 @@ interface ListGroupProps {
     onSelectItem: (item: string) => void;
 }
 
-
-
-//Click event handler
-function clicky () 
-{
-console.log("You clicked");
-}
-
 function ListGroup(props: ListGroupProps)
 {
-    
-    const [selectedIndex, setSelectedIndex] = useState(-1) //Hook
-    const empty_list = props.items.length === 0 && <p> NO ITEMS</p> //List will be sent to Null (Empty) if no items
-    
+    const [selectedIndex, setSelectedIndex] = useState(0)
+    const empty_list = props.items.length === 0 && <p> NO ITEMS</p>
 
     return (
     <>
         <h1>{props.title}</h1>
         <h2>{selectedIndex}</h2>
         {empty_list} 
-        <ul className={[styles.listGroup, styles.container].join(' ')}>
+        <List>
             {props.items.map(
-                            (item, index) =>(
-                                                <li
-                                                className={selectedIndex===index ? 'list-group-item active': 'list-group-item'}  
-                                                key={item} 
-                                                onClick={
-                                                            () => {
-                                                            setSelectedIndex(index)
-                                                            props.onSelectItem(item)
-                                                            console.log(selectedIndex)
-                                                            }
-                                                        }
-                                                >
-                                                
-                                                {item}
-                                                
-                                                </li>
-                                            )
-                            )
-            }
-        </ul>
+                (item, index) =>(
+                    <ListItem
+                    active = {index === selectedIndex}
+                    //className ="list-group-item active" aria-current="true"
+                    key={item} 
+                    onClick={
+                        () => {
+                        setSelectedIndex(index)
+                        props.onSelectItem(item)
+                        console.log(selectedIndex)
+                        }
+                    }
+                    >
+                    {item}
+                    </ListItem>
+                )
+            )}
+        </List>
     </>);
 }
 

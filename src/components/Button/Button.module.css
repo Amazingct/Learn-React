@@ -1,0 +1,16 @@
+.btn{
+    padding: 8px 12px;
+    border-radius: 3px;
+    border: 0;
+    
+}
+
+.btn-primary{
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-danger{
+    background-color: #ff001e;
+    color: #fff;
+}
